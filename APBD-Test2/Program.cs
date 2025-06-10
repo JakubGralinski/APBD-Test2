@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using APBD_Test2.Data;
+using APBD_Test2.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped</*IService*/,/*Service*/>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
